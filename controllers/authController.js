@@ -26,6 +26,8 @@ const signup = async (req, res) => {
 }
 
 const login = async (req, res) => {
+    console.log('Login attempt:', { username: req.body.username });
+    console.log('Request body:', req.body);
     const { username, password } = req.body;
 
     try {

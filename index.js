@@ -8,7 +8,16 @@ const app = express();
 const cors = require('cors');
 
 app.use(express.json());
-app.use(cors());
+// Configure CORS for both development and production
+app.use(cors({
+  origin: [
+    'http://localhost:5173', // Development frontend
+    'https://task-manager-fe-dun.vercel.app', // Production frontend
+  ],
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 
 // Mount routes
 app.use('/api/users', userRoutes);
