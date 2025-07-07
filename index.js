@@ -2,6 +2,8 @@ const express = require('express');
 const userRoutes = require('./routes/userRoutes');
 const authRoutes = require('./routes/authRoutes');
 const taskRoutes = require('./routes/taskRoutes');
+const designationRoutes = require('./routes/designationRoutes');
+const rolesRoutes = require('./routes/rolesRoutes');
 require('dotenv').config();
 
 const app = express();
@@ -23,6 +25,8 @@ app.use(cors({
 app.use('/api/users', userRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/tasks', taskRoutes);
+app.use('/api/designations', designationRoutes);
+app.use('/api/roles', rolesRoutes);
 
 // Test route
 app.get('/', (req, res) => {

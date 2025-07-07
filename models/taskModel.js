@@ -11,22 +11,22 @@ async function getTaskById(id) {
 }
 
 async function createTask(taskData) {
-    const { project_id, title, description, assignee_id, status, priority, due_date } = taskData;
+    const { project_id, title, description, assignee_id, status, priority, due_date, created_by_id } = taskData;
     
     const result = await pool.query(
-        'INSERT INTO tasks (project_id, title, description, assignee_id, status, priority, due_date) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *',
-        [project_id, title, description, assignee_id, status, priority, due_date]
+        'INSERT INTO tasks (project_id, title, description, assignee_id, status, priority, due_date, created_by_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *',
+        [project_id, title, description, assignee_id, status, priority, due_date, created_by_id]
     );
     
     return result.rows[0];
 }
 
 async function updateTask(id, taskData) {
-    const { project_id, title, description, assignee_id, status, priority, due_date } = taskData;
+    const { project_id, title, description, assignee_id, status, priority, due_date, created_by_id } = taskData;
     
     const result = await pool.query(
-        'UPDATE tasks SET project_id = $1, title = $2, description = $3, assignee_id = $4, status = $5, priority = $6, due_date = $7 WHERE id = $8 RETURNING *',
-        [project_id, title, description, assignee_id, status, priority, due_date, id]
+        'UPDATE tasks SET project_id = $1, title = $2, description = $3, assignee_id = $4, status = $5, priority = $6, due_date = $7, created_by_id = $8 WHERE id = $9 RETURNING *',
+        [project_id, title, description, assignee_id, status, priority, due_date, created_by_id, id]
     );
     
     return result.rows[0];

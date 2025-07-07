@@ -1,4 +1,3 @@
-const pool = require('../db');
 const taskModel = require('../models/taskModel');
 
 async function getAllTasks(req, res) {
